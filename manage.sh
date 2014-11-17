@@ -14,29 +14,52 @@ usage(){
 	echo "  uninstall	remove the vim setting"	
 }
 
-if [ $# != 1 ]
-then
+# set bundle environment
+install_bundle(){
+bundle_dir="$HOME/.vim/bundle"
+	if [ -d $bundle_dir ];then
+		echo "Bundle exist."
+	else
+		echo "Bundle not exist!Create it."
+		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	fi
+}
+
+# update vim setting
+update_vimrc(){
+	cd ~/.vim
+	if [ -f "$HOME/.vimrc" ];then
+		echo "moving .vimrc to .vimrc.date"
+		mv ~/.vimrc ~/.vimrc.`date +%Y%m%d`
+	fi
+	ln -s ~/.vim/vimrc ~/.vimrc
+}
+
+# uninstall the vim setting
+uninstall(){
+	rm -rf ~/.vim
+}
+
+if [ $# != 1 ];then
 	echo "Error input!"
 	usage
 	exit 1;
+elif ([ $1 = "install" ] || [ $1 = "update" ] || [ $1 = "uninstall" ]);then
+	echo "start $1"
+	case "$1" in
+		"install")
+			install_bundle
+			update_vimrc
+			;;
+		"uninstall")
+			uninstall
+			;;
+		"update")
+			update_vimrc
+			;;
+	esac
 else
-	echo "Correct input"
+	echo "Unsupported function $1"
+	usage
+	exit 1;
 fi
-# set bundle environment
-bundle_dir="$HOME/.vim/bundle"
-if [ -d $bundle_dir ]
-then
-	echo "Bundle exist."
-else
-	echo "Bundle not exist!Create it."
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-
-cd ~/.vim
-if [ -f "$HOME/.vimrc" ]; then
-	mv ~/.vimrc ~/.vimrc.`date +%Y%m%d`
-fi
-
-
-ln -s ~/.vim/vimrc ~/.vimrc
-

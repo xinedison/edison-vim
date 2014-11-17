@@ -60,6 +60,7 @@ call vundle#end()            " required
 " Put your non-Plugin stuff after this line
 " }
 
+" set the tabstop {
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -72,6 +73,7 @@ endif
 " setting for python indent and fold
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType python setlocal foldmethod=indent
+" }
 
 " the syntax on
 syntax on
@@ -84,10 +86,11 @@ set number
 set incsearch
 set hlsearch
 
-" setting the fold method
+" Setting the fold method {
 set foldenable
 set foldmethod=syntax
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" }
 
 " Ctags {
   set tags=./tags;/,~/.vimtags
