@@ -6,7 +6,7 @@
 # this manage script can do "install" "update" and "uninstall" work
 app_name='edison-vim'
 
-usage(){
+help(){
 	echo "usage: manage.sh <command>"
 	echo "The command are:"
 	echo "  install	install the vundle and setting vim"
@@ -28,11 +28,14 @@ bundle_dir="$HOME/.vim/bundle"
 # update vim setting
 update_vimrc(){
 	cd ~/.vim
-	if [ -f "$HOME/.vimrc" ];then
+	if [ ! -e "$HOME/.vimrc" ];then
+		echo "link vimrc"
+		ln -s ~/.vim/vimrc ~/.vimrc
+	elif [ ! -L "$HOME/.vimrc" ];then
 		echo "moving .vimrc to .vimrc.date"
 		mv ~/.vimrc ~/.vimrc.`date +%Y%m%d`
+		ln -s ~/.vim/vimrc ~/.vimrc
 	fi
-	ln -s ~/.vim/vimrc ~/.vimrc
 }
 
 # uninstall the vim setting
@@ -42,7 +45,7 @@ uninstall(){
 
 if [ $# != 1 ];then
 	echo "Error input!"
-	usage
+	help
 	exit 1;
 elif ([ $1 = "install" ] || [ $1 = "update" ] || [ $1 = "uninstall" ]);then
 	echo "start $1"
@@ -60,6 +63,6 @@ elif ([ $1 = "install" ] || [ $1 = "update" ] || [ $1 = "uninstall" ]);then
 	esac
 else
 	echo "Unsupported function $1"
-	usage
+	help
 	exit 1;
 fi
