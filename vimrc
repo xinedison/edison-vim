@@ -93,16 +93,16 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " }
 
 " Ctags {
-  set tags=./tags;/,~/.vimtags
-  " Make tags placed in .git/tags file available in all levels of a repository
-  let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-  if gitroot != ''
-	 let &tags = &tags . ',' . gitroot . '/.git/tags'
-  endif
+set tags=./tags;/,~/.vimtags
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+ let &tags = &tags . ',' . gitroot . '/.git/tags'
+endif
 " }
 
 " taglist{
-:map <F3> :TlistOpen
+nnoremap <F3> :TlistToggle<CR>
 let Tlist_Auto_Update=1
 let Tlist_Process_File_Always=1
 let Tlist_Exit_OnlyWindow=1
@@ -116,7 +116,7 @@ let Tlist_Use_Right_Window = 1
 
 " NERDTree{
 " use <F2> to start NERDTree 
-:map <F2> :NERDTree .
+nnoremap <F2> :NERDTreeToggle<CR>
 " when NERDTree opened，auto show Bookmarks
 let NERDTreeShowBookmarks=1
 " }
