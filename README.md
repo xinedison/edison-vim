@@ -3,18 +3,18 @@ Edison-vim is the setting for vim.
 I use gmarik/Vundle.vim for plugin management
 
 ## install
-git clone https://github.com/xinedison/edison-vim.git ~/.vim
+`git clone https://github.com/xinedison/edison-vim.git ~/.vim`
 
-cd ~/.vim
+`cd ~/.vim`
 
-./manage.sh install
+`./manage.sh install`
 
 ## update
-cd ~/.vim
+`cd ~/.vim`
 
-./manage.sh update
+`./manage.sh update`
 
 ## uninstall
-cd ~/.vim
+`cd ~/.vim`
 
-./manage.sh uninstall
+`./manage.sh uninstall`

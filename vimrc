@@ -70,6 +70,7 @@ if has('gui_running')
 else
 	set background=dark
 endif
+set t_Co=16
 colorscheme solarized
 " }
 
