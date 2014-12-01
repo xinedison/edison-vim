@@ -38,6 +38,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" Plugin for color schme
+Plugin 'altercation/vim-colors-solarized'
+
 " Plugin for source code browsing
 Plugin 'taglist.vim'
 Plugin 'scrooloose/nerdtree'
@@ -58,6 +61,16 @@ call vundle#end()            " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" }
+
+" color {
+syntax enable
+if has('gui_running')
+	set background=light
+else
+	set background=dark
+endif
+colorscheme solarized
 " }
 
 " set the tabstop {
