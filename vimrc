@@ -27,14 +27,6 @@
 	endif
  " }
  
- " Windows Compatible{
- " On windows,also use '.vim' instead of 'vimfiles';
- "
-	if WINDOWS()
-		set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-	endif
- " }
- 
 " }
 
 
@@ -44,8 +36,21 @@
 
 " set the untime path to include Vundle and initialize
 " {
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
+" Windows Compatible{
+ " On windows,also use '.vim' instead of 'vimfiles';
+ "
+	if WINDOWS()
+		set rtp+=~/.vim/bundle/Vundle.vim/
+		let path='~/.vim/bundle'
+		call vundle#begin(path)
+	endif
+ " }
+	
+	if !WINDOWS()
+		set rtp+=~/.vim/bundle/Vundle.vim
+		call vundle#begin()
+	endif
+	
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
