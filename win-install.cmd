@@ -11,7 +11,7 @@ REM    distributed under the License is distributed on an "AS IS" BASIS,
 REM    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 REM    See the License for the specific language governing permissions and
 REM    limitations under the License.
-REM    changed by edison
+REM    changed by edison 2014.12.11
 
 
 @if not exist "%HOME%" @set HOME=%HOMEDRIVE%%HOMEPATH%
@@ -29,9 +29,8 @@ IF NOT EXIST "%APP_DIR%" (
 	call cd "%APP_DIR%" 
 )
 
-call mklink "%HOME%\.vimrc" "%APP_DIR%\.vimrc"
-call mklink "%HOME%\_vimrc" "%APP_DIR%\.vimrc"
-call mklink /J "%HOME%\.vim" "%APP_DIR%\.vim"
+call mklink "%HOME%\.vimrc" "%APP_DIR%\vimrc"
+
 
 IF NOT EXIST "%APP_DIR%\bundle" (
 	call mkdir "%APP_DIR%\bundle"
