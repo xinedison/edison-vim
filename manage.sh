@@ -22,6 +22,8 @@ bundle_dir="$HOME/.vim/bundle"
 	else
 		echo "Bundle not exist!Create it."
 		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		cd ~/.vim/bundle
+		git clone git://github.com/altercation/vim-colors-solarized.git
 	fi
 }
 
